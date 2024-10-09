@@ -37,4 +37,30 @@ const CartScreen = () => {
 
 export default CartScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: "#ED4C67",
+		borderRadius: 5, // This creates the pill shape
+		paddingVertical: 8,
+		paddingHorizontal: 24,
+		alignItems: "center",
+		justifyContent: "center",
+		elevation: 3, // for Android shadow
+		shadowColor: "#000", // for iOS shadow
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		maxWidth: 200,
+	},
+
+	text: {
+		color: "#fff",
+	},
+	text2: {
+		color: "gray",
+		fontSize: 14,
+	},
+});

@@ -35,16 +35,16 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
 				<FontAwesome
 					onPress={() => updateQuantity(cartItem.id, -1)}
 					name="minus"
-					color="gray"
-					style={{ padding: 5 }}
+					color="#ef4444"
+					style={{ padding: 5, fontWeight: "thin" }}
 				/>
 
 				<Text style={styles.quantity}>{cartItem.quantity}</Text>
 				<FontAwesome
 					onPress={() => updateQuantity(cartItem.id, 1)}
 					name="plus"
-					color="gray"
-					style={{ padding: 5 }}
+					color="#ef4444"
+					style={{ padding: 5, fontWeight: "ultralight" }}
 				/>
 			</View>
 		</View>
@@ -78,12 +78,25 @@ const styles = StyleSheet.create({
 	},
 	quantitySelector: {
 		flexDirection: "row",
-		gap: 10,
+		gap: 20,
 		alignItems: "center",
 		marginVertical: 10,
+		borderWidth: 0.4,
+		backgroundColor: "#fee2e2",
+		borderColor: "#ef4444",
+		borderRadius: 8,
+		paddingVertical: 4,
+
+		shadowColor: "#000", // for iOS shadow
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 1,
+		// },
+		// shadowOpacity: 0.25,
+		// shadowRadius: 3.84,
 	},
 	quantity: {
-		fontWeight: "500",
+		fontWeight: "300",
 		fontSize: 18,
 	},
 	price: {
