@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useState } from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, router, useLocalSearchParams } from "expo-router";
 import products from "@/assets/data/products";
 import Colors from "@/src/constants/Colors";
 import Button from "@/src/components/Button";
@@ -22,6 +22,8 @@ const ProductDetailScreen = () => {
 	const handleAddToCart = () => {
 		if (!product) return;
 		addItem(product, selectedSize);
+
+		router.push("/cart");
 	};
 
 	return (
