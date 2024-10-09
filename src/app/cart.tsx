@@ -10,17 +10,25 @@ import React, { useCallback, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { useCart } from "../providers/CartProvider";
 import CartListItem from "../components/CartListItem";
+import Button from "../components/Button";
 
 const CartScreen = () => {
-	const { items } = useCart();
+	const { items, total } = useCart();
 
 	return (
-		<View>
+		<View style={{ margin: 10 }}>
 			<FlatList
 				data={items}
 				renderItem={({ item }) => <CartListItem cartItem={item} />}
-				contentContainerStyle={{ marginHorizontal: 10, marginVertical: 10 }}
+				contentContainerStyle={{
+					marginHorizontal: 10,
+					paddingVertical: 10,
+				}}
 			/>
+
+			{total > 0 && <Text> Total: {total}</Text>}
+
+			<Button text="Checkout" />
 
 			<StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
 		</View>
