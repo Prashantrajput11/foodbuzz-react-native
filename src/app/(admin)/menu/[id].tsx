@@ -1,20 +1,21 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useState } from "react";
-import { Stack, router, useLocalSearchParams } from "expo-router";
+import { Link, Stack, router, useLocalSearchParams } from "expo-router";
 import products from "@/assets/data/products";
 import Colors from "@/src/constants/Colors";
 import Button from "@/src/components/Button";
 import { useCart } from "@/src/providers/CartProvider";
 import { PizzaSize } from "@/src/types";
+import { FontAwesome } from "@expo/vector-icons";
 
 const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 const ProductDetailScreen = () => {
-	const { id: productId } = useLocalSearchParams();
+	const { id } = useLocalSearchParams();
 	const { addItem } = useCart();
 
 	const [selectedSize, setSelectedSize] = useState<PizzaSize>(sizes[0]);
 
-	const product = products.find((item) => item.id === Number(productId));
+	const product = products.find((item) => item.id === Number(id));
 
 	// todo: update it with a falback text and image
 	if (!product) return;
@@ -28,6 +29,25 @@ const ProductDetailScreen = () => {
 
 	return (
 		<View>
+			<Stack.Screen
+				options={{
+					title: "Menu",
+					headerRight: () => (
+						<Link href={`/(admin)/menu/create?id=${id}`} asChild>
+							<Pressable>
+								{({ pressed }) => (
+									<FontAwesome
+										name="pencil"
+										size={25}
+										color={Colors.light.tint}
+										style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+									/>
+								)}
+							</Pressable>
+						</Link>
+					),
+				}}
+			/>
 			<Stack.Screen options={{ title: product.name }} />
 
 			<Text style={styles.subtitle}>{product.name}</Text>
